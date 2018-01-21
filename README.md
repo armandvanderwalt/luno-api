@@ -26,7 +26,7 @@ using luno_api;
 var client = new LunoClient(_privateKey, _publicKey);
 
 var response = await client.GetTickers();
-foreach (var ticker in response.Tickers.Entities)
+foreach (var ticker in response.Tickers)
 {
     Console.WriteLine(ticker.Bid);
 }
