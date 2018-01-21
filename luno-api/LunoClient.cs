@@ -25,7 +25,7 @@ namespace luno_api
             _privateKey = privateKey;
         }
 
-        public async Task<TickerResponse> GetTickers()
+        public async Task<TickerResponse> GetTickersAsync()
         {
             var stringResult = await GetRequest("tickers");
 
@@ -34,7 +34,7 @@ namespace luno_api
             return result;
         }
 
-        public async Task<Ticker> GetTicker(string pair)
+        public async Task<Ticker> GetTickerAsync(string pair)
         {
             var stringResult = await GetRequest("ticker", new Dictionary<string, string>
             {
@@ -46,7 +46,7 @@ namespace luno_api
             return result;
         }
 
-        public async Task<OrderBookResponse> GetOrderBook(string pair)
+        public async Task<OrderBookResponse> GetOrderBookAsync(string pair)
         {
             var stringResult = await GetRequest("orderbook", new Dictionary<string, string>
             {
@@ -58,7 +58,7 @@ namespace luno_api
             return result;
         }
 
-        public async Task<TradeResponse> GetTrades(string pair, int? since = null)
+        public async Task<TradeResponse> GetTradesAsync(string pair, int? since = null)
         {
             var query = new Dictionary<string, string>
             {
@@ -77,7 +77,7 @@ namespace luno_api
             return result;
         }
 
-        public async Task<BalanceResponse> GetBalances()
+        public async Task<BalanceResponse> GetBalancesAsync()
         {
             var stringResult = await GetSecureRequest("balance");
 
@@ -86,7 +86,7 @@ namespace luno_api
             return result;
         }
 
-        public async Task<ListOrderResponse> GetOrders(string state = null, string pair = null)
+        public async Task<ListOrderResponse> GetOrdersAsync(string state = null, string pair = null)
         {
             Dictionary<string, string> paramaters = null;
 
@@ -111,7 +111,7 @@ namespace luno_api
             return result;
         }
 
-        public async Task<PostOrderResponse> PostOrder(string pair, string type, string volume, string price,
+        public async Task<PostOrderResponse> PostOrderAsync(string pair, string type, string volume, string price,
             string baseAccountId = null, string counterAccountId = null)
         {
             var paramaters = new Dictionary<string, string>
@@ -139,7 +139,7 @@ namespace luno_api
             return result;
         }
 
-        public async Task<PostOrderResponse> PostMarketOrder(string pair, string type, string counterVolume = null, string baseVolume = null,
+        public async Task<PostOrderResponse> PostMarketOrderAsync(string pair, string type, string counterVolume = null, string baseVolume = null,
             string baseAccountId = null, string counterAccountId = null)
         {
             var paramaters = new Dictionary<string, string>
@@ -175,7 +175,7 @@ namespace luno_api
             return result;
         }
 
-        public async Task<StopOrderResponse> StopOrder(string orderId)
+        public async Task<StopOrderResponse> StopOrderAsync(string orderId)
         {
             var stringResult = await PostSecureRequest("stoporder", new Dictionary<string, string>
             {
@@ -187,7 +187,7 @@ namespace luno_api
             return result;
         }
 
-        public async Task<Order> GetOrder(string orderId)
+        public async Task<Order> GetOrderAsync(string orderId)
         {
             var stringResult = await GetSecureRequest($"orders/{orderId}");
 
@@ -196,7 +196,7 @@ namespace luno_api
             return result;
         }
 
-        public async Task<ListTradeResponse> GetTrades(string pair, int? since, int? limit)
+        public async Task<ListTradeResponse> GetTradesAsync(string pair, int? since, int? limit)
         {
 
             var paramaters = new Dictionary<string, string>
@@ -221,7 +221,7 @@ namespace luno_api
             return result;
         }
 
-        public async Task<AddAccountResponse> AddAccount(string currency, string name)
+        public async Task<AddAccountResponse> AddAccountAsync(string currency, string name)
         {
             var stringResult = await PostSecureRequest("accounts", new Dictionary<string, string>
             {
@@ -234,7 +234,7 @@ namespace luno_api
             return result;
         }
 
-        public async Task<TransactionResponse> GetTransactions(string id, int minRow, int maxRow)
+        public async Task<TransactionResponse> GetTransactionsAsync(string id, int minRow, int maxRow)
         {
             var stringResult = await GetSecureRequest($"accounts/{id}/transactions", new Dictionary<string, string>
             {
@@ -247,7 +247,7 @@ namespace luno_api
             return result;
         }
 
-        public async Task<TransactionResponse> GetPendingTransactions(string id)
+        public async Task<TransactionResponse> GetPendingTransactionsAsync(string id)
         {
             var stringResult = await GetSecureRequest($"accounts/{id}/pending");
 
@@ -256,7 +256,7 @@ namespace luno_api
             return result;
         }
 
-        public async Task<FeeInfo> GetFeeInfo(string pair)
+        public async Task<FeeInfo> GetFeeInfoAsync(string pair)
         {
             var stringResult = await GetSecureRequest("fee_info", new Dictionary<string, string>
             {
@@ -268,7 +268,7 @@ namespace luno_api
             return result;
         }
 
-        public async Task<ReceiveAddress> GetFundingAddress(string asset, string address = null)
+        public async Task<ReceiveAddress> GetFundingAddressAsync(string asset, string address = null)
         {
             var paramaters = new Dictionary<string, string>
             {
@@ -287,7 +287,7 @@ namespace luno_api
             return result;
         }
 
-        public async Task<ReceiveAddress> CreateFundingAddress(string asset)
+        public async Task<ReceiveAddress> CreateFundingAddressAsync(string asset)
         {
             var paramaters = new Dictionary<string, string>
             {
@@ -300,7 +300,7 @@ namespace luno_api
             return result;
         }
 
-        public async Task<GetWithdrawalResponse> GetWithdrawals()
+        public async Task<GetWithdrawalResponse> GetWithdrawalsAsync()
         {
 
             var stringResult = await GetSecureRequest("withdrawals");
@@ -310,7 +310,7 @@ namespace luno_api
             return result;
         }
 
-        public async Task<Withdrawal> GetWithdrawalStatus(string id)
+        public async Task<Withdrawal> GetWithdrawalStatusAsync(string id)
         {
             var stringResult = await GetSecureRequest($"withdrawals/{id}");
 
@@ -319,7 +319,7 @@ namespace luno_api
             return result;
         }
 
-        public async Task<Withdrawal> DeleteWithdrawal(string id)
+        public async Task<Withdrawal> DeleteWithdrawalAsync(string id)
         {
             var stringResult = await DeleteSecureRequest($"withdrawals/{id}");
 
@@ -329,7 +329,7 @@ namespace luno_api
         }
 
 
-        public async Task<Withdrawal> RequestWithdrawals(string type, string amount, string beneficiaryId)
+        public async Task<Withdrawal> RequestWithdrawalsAsync(string type, string amount, string beneficiaryId)
         {
             var paramaters = new Dictionary<string, string>
             {
