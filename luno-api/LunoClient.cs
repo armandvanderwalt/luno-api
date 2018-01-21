@@ -473,46 +473,4 @@ namespace luno_api
         }
 
     }
-
-    public class GetWithdrawalResponse
-    {
-        [JsonProperty("withdrawals")]
-        public List<Withdrawal> Withdrawals { get; set; }
-    }
-
-    public class Withdrawal
-    {
-        [JsonProperty("status")]
-        public string Status { get; set; }
-
-        [JsonProperty("id")]
-        public string Id { get; set; }
-    }
-
-    public class FeeInfo
-    {
-        [JsonProperty("maker_fee")]
-        public string MakerFee { get; set; }
-
-        [JsonProperty("taker_fee")]
-        public string TakerFee { get; set; }
-
-        [JsonProperty("thirty_day_volume")]
-        public string ThirtyDayVolume { get; set; }
-    }
-    public class ReceiveAddress
-    {
-        [JsonProperty("asset")]
-        public string Asset { get; set; }
-
-        [JsonProperty("address")]
-        public string Address { get; set; }
-
-        [JsonProperty("total_received")]
-        public string TotalReceived { get; set; }
-
-        [JsonProperty("total_unconfirmed")]
-        public string TotalUnconfirmed { get; set; }
-    }
-
 }
