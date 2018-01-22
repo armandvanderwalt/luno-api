@@ -414,23 +414,26 @@ namespace luno_api
             {
                 var requestContent = new FormUrlEncodedContent(keyValueParams);
 
-                var request = new HttpRequestMessage()
+                using (var request = new HttpRequestMessage()
                 {
                     RequestUri = new Uri(baseUrl),
                     Method = HttpMethod.Post,
                     Content = requestContent
-                };
-
-                request.Headers.Add("Authorization", "Basic " + Convert.ToBase64String(Encoding.UTF8.GetBytes($"{_publicKey}:{_privateKey}")));
-
-                var response = await client.SendAsync(request);
-
-                var responseContent = response.Content;
-
-                using (var reader = new StreamReader(await responseContent.ReadAsStreamAsync()))
+                })
                 {
-                    return await reader.ReadToEndAsync();
+                    request.Headers.Add("Authorization", "Basic " + Convert.ToBase64String(Encoding.UTF8.GetBytes($"{_publicKey}:{_privateKey}")));
+
+                    var response = await client.SendAsync(request);
+
+                    var responseContent = response.Content;
+
+                    using (var reader = new StreamReader(await responseContent.ReadAsStreamAsync()))
+                    {
+                        return await reader.ReadToEndAsync();
+                    }
                 }
+
+               
             }
         }
 
@@ -452,22 +455,23 @@ namespace luno_api
             {
                 var requestContent = new FormUrlEncodedContent(keyValueParams);
 
-                var request = new HttpRequestMessage()
+                using (var request = new HttpRequestMessage()
                 {
                     RequestUri = new Uri(baseUrl),
                     Method = HttpMethod.Delete,
                     Content = requestContent
-                };
-
-                request.Headers.Add("Authorization", "Basic " + Convert.ToBase64String(Encoding.UTF8.GetBytes($"{_publicKey}:{_privateKey}")));
-
-                var response = await client.SendAsync(request);
-
-                var responseContent = response.Content;
-
-                using (var reader = new StreamReader(await responseContent.ReadAsStreamAsync()))
+                })
                 {
-                    return await reader.ReadToEndAsync();
+                    request.Headers.Add("Authorization", "Basic " + Convert.ToBase64String(Encoding.UTF8.GetBytes($"{_publicKey}:{_privateKey}")));
+
+                    var response = await client.SendAsync(request);
+
+                    var responseContent = response.Content;
+
+                    using (var reader = new StreamReader(await responseContent.ReadAsStreamAsync()))
+                    {
+                        return await reader.ReadToEndAsync();
+                    }
                 }
             }
         }
